@@ -1,3 +1,5 @@
 module.exports = {
-    apiRouter: require('./apiRouter')
+    apiRouter: require('./api.router'),
+    shopRouter: require('./shop.router'),
+    shopCardRouter: require('./shopCard.router')
 };
