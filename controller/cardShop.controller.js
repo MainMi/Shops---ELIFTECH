@@ -3,22 +3,40 @@ const { cardShopService } = require('../service');
 
 module.exports = {
     cardShopPage: async (req, res) => {
-        const { getObj } = req.query || {};
+        const { getObj, typeButton } = req.query || {};
 
-        const cardProductRemove = await cardShop.find({ _id: getObj });
+        const cardProduct = await cardShopService.getOneCardProduct(getObj);
 
-        if (cardProductRemove) {
-            await cardShop.remove({ _id: getObj });
+        if (cardProduct.length) {
+            switch (typeButton) {
+                case 'remove':
+                    await cardShop.remove(cardProduct[0]);
+                    break;
+                case 'plusOne':
+                    await cardShop.updateOne({ product: getObj }, { $set: { count: +cardProduct[0].count + 1 } });
+                    break;
+                case 'minusOne':
+                    if ((+cardProduct[0].count - 1) < 1) {
+                        await cardShop.remove(cardProduct[0]);
+                        break;
+                    }
+                    await cardShop.updateOne({ product: getObj }, { $set: { count: +cardProduct[0].count - 1 } });
+                    break;
+                default:
+                    break;
+            }
         }
 
-        const cardProduct = await cardShopService.getAllCardProduct();
+        const cardProducts = await cardShopService.getAllCardProduct();
 
         let finallCount = 0;
 
-        cardProduct.forEach((value) => {
+        cardProducts.forEach((value) => {
             finallCount += value.count * value.product.price;
         });
 
-        res.render('cardShopStatic', { cardProduct, isProduct: !!cardProduct, finallCount });
+        req.query = {};
+
+        res.render('cardShopStatic', { cardProducts, isProduct: !!cardProducts, finallCount });
     }
 };

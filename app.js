@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 const { PORT, MONGO_URL } = require('./config/config');
-const { restoreLocalfile2Mongo } = require('./helpers/savaDB');
+
 const apiRouter = require('./router/api.router');
 
 const app = express();
@@ -30,7 +30,7 @@ function _connectDB() {
     });
 }
 
-restoreLocalfile2Mongo();
+// restoreLocalfile2Mongo();
 
 _connectDB();
 

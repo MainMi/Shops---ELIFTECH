@@ -32,25 +32,29 @@
             </form>
             <div class="collumBox">
                 {{#if isProduct}}
-                    {{#each cardProduct}}
+                    {{#each cardProducts}}
                         <div class="productBox">
                             <h3>{{this.product.name}}</h3>
                             <p>{{this.product.body}}</p>
                             <h4>{{this.product.price}}</h4>
                             <h4>count: {{this.count}}</h4>
-                            <a href="?getObj={{this._id}}" class="btn">Delete Item</a>
+                            <div class="buttonBox">
+                                <a class="btn m" href="?getObj={{this.product._id}}&typeButton=minusOne">-1</a>
+                                <a href="?getObj={{this.product._id}}&typeButton=remove" class="btn">Delete Item</a>
+                                <a class="btn m" href="?getObj={{this.product._id}}&typeButton=plusOne">+1</a>
+                            </div>
                         </div>
                     {{/each}}
                 {{/if}}
             </div>
             
         </div>
-        <footer>
+    </section>
+    <footer>
             <div class="price">
                 <h2>Total Price: {{this.finallCount}}</h2>
-                <label for="formSubmit">Submit</label>
+                <label>Submit</label>
             </div>
         </footer>
-    </section>
 </body>
 </html>

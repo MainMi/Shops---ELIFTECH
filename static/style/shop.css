@@ -54,7 +54,7 @@ header a:hover {
 .content .shops .title {
     display: flex;
     text-align: center;
-    padding: 50px;
+    padding: 2vw;
     margin: 40px;
     background-color: #fff;
     border-radius: 10px;
