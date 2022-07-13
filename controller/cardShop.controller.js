@@ -3,51 +3,57 @@ const user = require('../database/model/user');
 const { cardShopService } = require('../service');
 
 module.exports = {
-    cardShopPage: async (req, res) => {
-        const { getObj, typeButton } = req.query || {};
+    cardShopPage: async (req, res, next) => {
+        try {
+            const { getObj, typeButton } = req.query || {};
 
-        const cardProduct = await cardShopService.getOneCardProduct(getObj);
+            const cardProduct = await cardShopService.getOneCardProduct(getObj);
 
-        if (cardProduct.length) {
-            switch (typeButton) {
-                case 'remove':
-                    await cardShop.remove(cardProduct[0]);
-                    break;
-                case 'plusOne':
-                    await cardShop.updateOne({ product: getObj }, { $set: { count: +cardProduct[0].count + 1 } });
-                    break;
-                case 'minusOne':
-                    if ((+cardProduct[0].count - 1) < 1) {
+            if (cardProduct.length) {
+                switch (typeButton) {
+                    case 'remove':
                         await cardShop.remove(cardProduct[0]);
                         break;
-                    }
-                    await cardShop.updateOne({ product: getObj }, { $set: { count: +cardProduct[0].count - 1 } });
-                    break;
-                default:
-                    break;
+                    case 'plusOne':
+                        await cardShop.updateOne({ product: getObj }, { $set: { count: +cardProduct[0].count + 1 } });
+                        break;
+                    case 'minusOne':
+                        if ((+cardProduct[0].count - 1) < 1) {
+                            await cardShop.remove(cardProduct[0]);
+                            break;
+                        }
+                        await cardShop.updateOne({ product: getObj }, { $set: { count: +cardProduct[0].count - 1 } });
+                        break;
+                    default:
+                        break;
+                }
             }
+
+            const cardProducts = await cardShopService.getAllCardProduct();
+
+            let finallCount = 0;
+
+            cardProducts.forEach((value) => {
+                finallCount += value.count * value.product.price;
+            });
+
+            res.render('cardShopStatic', { cardProducts, isProduct: !!cardProducts, finallCount });
+        } catch (e) {
+            next(e);
         }
-
-        const cardProducts = await cardShopService.getAllCardProduct();
-
-        let finallCount = 0;
-
-        cardProducts.forEach((value) => {
-            finallCount += value.count * value.product.price;
-        });
-
-        req.query = {};
-
-        res.render('cardShopStatic', { cardProducts, isProduct: !!cardProducts, finallCount });
     },
 
     cardShopPost: async (req, res, next) => {
-        const products = await cardShopService.getAllCardProduct();
+        try {
+            const products = await cardShopService.getAllCardProduct();
 
-        user.create({ ...req.body, products });
+            user.create({ ...req.body, products });
 
-        res.redirect('/');
+            res.redirect('/');
 
-        next();
+            next();
+        } catch (e) {
+            next(e);
+        }
     }
 };

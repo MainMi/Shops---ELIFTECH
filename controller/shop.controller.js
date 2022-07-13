@@ -1,34 +1,47 @@
 const cardShop = require('../database/model/cardShop');
+const { NOT_VALID_ID } = require('../error/errorCustomStatus');
+const ErrorHandler = require('../error/errorHandler');
 const { shopService, cardShopService } = require('../service');
 
 module.exports = {
-    shopPage: async (req, res) => {
-        const shops = await shopService.getShop();
+    shopPage: async (req, res, next) => {
+        try {
+            const shops = await shopService.getShop();
 
-        res.render('shopStatic', { shops });
+            res.render('shopStatic', { shops });
+        } catch (e) {
+            next(e);
+        }
     },
 
-    shopProductPage: async (req, res) => {
-        const { shopName } = req.params || {};
-        const { getObj } = req.query || {};
+    shopProductPage: async (req, res, next) => {
+        try {
+            const { shopName } = req.params || {};
+            const { getObj } = req.query || {};
 
-        if (getObj) {
-            const cardProduct = await cardShopService.getOneCardProduct(getObj);
-            if (cardProduct.length) {
-                await cardShop.updateOne({ product: getObj }, { $set: { count: +cardProduct[0].count + 1 } });
-            } else {
-                await cardShop.create({ product: getObj, count: 1 });
+            if (getObj) {
+                const cardProduct = await cardShopService.getOneCardProduct(getObj);
+                if (cardProduct.length) {
+                    await cardShop.updateOne({ product: getObj }, { $set: { count: +cardProduct[0].count + 1 } });
+                } else {
+                    await cardShop.create({ product: getObj, count: 1 });
+                }
             }
+
+            let product = {};
+
+            if (shopName) {
+                product = await shopService.getAllproductShop(shopName);
+                if (!product) {
+                    throw new ErrorHandler(402, 0, NOT_VALID_ID.en);
+                }
+            }
+
+            const shops = await shopService.getShop();
+
+            res.render('shopStatic', { shops, product, isProduct: !!shopName });
+        } catch (e) {
+            next(e);
         }
-
-        let product = {};
-
-        if (shopName) {
-            product = await shopService.getAllproductShop(shopName);
-        }
-
-        const shops = await shopService.getShop();
-
-        res.render('shopStatic', { shops, product, isProduct: !!shopName });
     }
 };

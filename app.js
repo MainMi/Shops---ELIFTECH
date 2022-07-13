@@ -25,6 +25,16 @@ app.engine('.hbs', expressHbs.engine({
 
 app.set('views', path.join(__dirname, './static'));
 
+// eslint-disable-next-line no-unused-vars
+app.use('*', (err, req, res, next) => {
+    res.render('error', {
+        status: err.status,
+        customStatus: err.customStatus || 0,
+        message: err.message || ''
+    });
+    res.status(err.status || 500);
+});
+
 function _connectDB() {
     mongoose.connect(MONGO_URL, {
         useUnifiedTopology: true,
