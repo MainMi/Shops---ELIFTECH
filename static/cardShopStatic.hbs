@@ -19,15 +19,15 @@
 
     <section>
         <div class="content">
-            <form action="" method="post">
+            <form action="/shopsCard" method="post">
                 <h2>Name:</h2>
-                <input>
+                <input name="name">
                 <h2>Email:</h2>
-                <input>
+                <input type="email" name="email">
                 <h2>Phone:</h2>
-                <input>
+                <input name="phone">
                 <h2>Password:</h2>
-                <input>
+                <input type="password" name="password">
                 <input type="submit" value="submit" id="formSubmit">
             </form>
             <div class="collumBox">
@@ -53,7 +53,7 @@
     <footer>
             <div class="price">
                 <h2>Total Price: {{this.finallCount}}</h2>
-                <label>Submit</label>
+                <label for="formSubmit">Submit</label>
             </div>
         </footer>
 </body>

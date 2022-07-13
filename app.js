@@ -11,7 +11,17 @@ const app = express();
 
 app.use(express.json());
 
+app.use(express.urlencoded({ extended: true }));
+
 app.use('/', apiRouter);
+
+// eslint-disable-next-line no-unused-vars
+app.use('*', (err, req, res, next) => {
+    res.status(err.status || 500).json({
+        customStatus: err.customStatus || 0,
+        message: err.message || ''
+    });
+});
 
 app.use(express.static(path.join(__dirname, './static')));
 
@@ -29,8 +39,6 @@ function _connectDB() {
         useNewUrlParser: true
     });
 }
-
-// restoreLocalfile2Mongo();
 
 _connectDB();
 

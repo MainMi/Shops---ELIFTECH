@@ -1,4 +1,5 @@
 const cardShop = require('../database/model/cardShop');
+const user = require('../database/model/user');
 const { cardShopService } = require('../service');
 
 module.exports = {
@@ -38,5 +39,15 @@ module.exports = {
         req.query = {};
 
         res.render('cardShopStatic', { cardProducts, isProduct: !!cardProducts, finallCount });
+    },
+
+    cardShopPost: async (req, res, next) => {
+        const products = await cardShopService.getAllCardProduct();
+
+        user.create({ ...req.body, products });
+
+        res.redirect('/');
+
+        next();
     }
 };
