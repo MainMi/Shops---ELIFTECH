@@ -6,7 +6,7 @@ module.exports = {
         try {
             const { error } = await userValidator.validate(req.body);
             if (error) {
-                throw new ErrorHandler(500, 0, error.details[0].message);
+                throw new ErrorHandler(500, 0, error.message);
             }
             next();
         } catch (e) {

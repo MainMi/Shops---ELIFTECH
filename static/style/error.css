@@ -50,12 +50,20 @@ section {
     justify-content: center;
     align-items: center;
     width: 75%;
+    padding: 25px;
     height: 50vh;
-    font-size: 2em;
     background-color: rgb(248, 108, 108);
     border: red 15px solid;
     border-radius: 15px;
 }
 
 .content h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.content li {
+    font-size: 1.25em;
+    margin-bottom: 10px;
+    list-style: none;
 }

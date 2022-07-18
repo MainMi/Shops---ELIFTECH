@@ -1,7 +1,8 @@
+const { v4: uuidv4 } = require('uuid');
 const cardShop = require('../database/model/cardShop');
 const { NOT_VALID_ID } = require('../error/errorCustomStatus');
 const ErrorHandler = require('../error/errorHandler');
-const { shopService, cardShopService } = require('../service');
+const { shopService } = require('../service');
 
 module.exports = {
     shopPage: async (req, res, next) => {
@@ -19,12 +20,18 @@ module.exports = {
             const { shopName } = req.params || {};
             const { getObj } = req.query || {};
 
+            if (!req.cookies.uuid) {
+                res.cookie('uuid', uuidv4());
+            }
+
+            const { uuid } = req.cookies;
+
             if (getObj) {
-                const cardProduct = await cardShopService.getOneCardProduct(getObj);
+                const cardProduct = await cardShop.find({ userUuid: uuid, product: getObj });
                 if (cardProduct.length) {
-                    await cardShop.updateOne({ product: getObj }, { $set: { count: +cardProduct[0].count + 1 } });
+                    await cardShop.updateOne({ product: getObj, userUuid: uuid }, { $set: { count: +cardProduct[0].count + 1 } });
                 } else {
-                    await cardShop.create({ product: getObj, count: 1 });
+                    await cardShop.create({ product: getObj, count: 1, userUuid: uuid });
                 }
             }
 

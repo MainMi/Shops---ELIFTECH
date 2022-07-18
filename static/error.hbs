@@ -19,10 +19,16 @@
 
     <section>
         <div class="content">
-            <h3>Status: {{status}}</h3>
-            <h3>CustomStatus: {{customStatus}}
-            </h3>
-            <p>{{message}}</p>
+            <h3>I'm sorry but an error has occurred</h3>
+            {{#if isMessageObject}}
+                <ul>
+                    {{#each message}}
+                        <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            {{else}}
+                <p>{{message}}</p>
+            {{/if}}
         </div>
     </section>
     

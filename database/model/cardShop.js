@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const cardShopSchema = new Schema({
     product: { type: Schema.Types.ObjectId, ref: 'Product' },
+    userUuid: { type: String },
     count: { type: String, default: 1 },
 }, { timeseries: true, toObject: { virtuals: true }, toJSON: { virtuals: true } });
 

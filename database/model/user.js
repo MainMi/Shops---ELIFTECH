@@ -6,6 +6,7 @@ const userSchema = new Schema({
     password: { type: String },
     phone: { type: String },
     language: { type: String, default: 'en' },
+    userUuid: { type: String },
     products: [{ type: Schema.Types.ObjectId, ref: 'CardShop' }],
 }, { timeseries: true, toObject: { virtuals: true }, toJSON: { virtuals: true } });
 
