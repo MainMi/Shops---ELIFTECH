@@ -1,0 +1,48 @@
+
+
+.modal {
+    position: fixed;
+    height: auto;
+    width: 75vw;
+    min-width: 300px;
+    height: 50px;
+    background-color: rgb(164, 164, 164);
+    border: 2px solid rgb(75, 75, 75);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    left: 12.5vw;
+    top: 60px;
+    z-index: 200;
+}
+
+.modal.error {
+    background-color: #9c4f4f;
+    color: #360101;
+}
+.modal.loading {
+    background-color: #c69823;
+    color: #362a01;
+}
+.modal.success {
+    background-color: #4f9c7c;
+    color: #013620;
+}
+
+.modal.show {
+    opacity: 0;
+    transition: 250ms;
+}
+
+.modal .content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 25px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+    transition: 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}

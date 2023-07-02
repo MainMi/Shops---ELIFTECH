@@ -1,0 +1,11 @@
+.inputBox {
+    display: flex;
+    align-items: center;
+    width: max-content;
+}
+
+.input {
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 5px;
+}

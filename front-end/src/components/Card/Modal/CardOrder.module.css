@@ -1,0 +1,129 @@
+.content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 20px;
+    transition: 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.itemBox {
+    position: relative;
+    width: calc(100% - 20px);
+    min-height: 80px;
+    max-height: 500px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    margin: 20px 0;
+    border: 1px solid #333;
+    border-radius: 10px;
+}
+
+.itemBox .priceBox {
+    margin-left: auto;
+    margin-right: 30px;
+}
+
+.itemBox .priceBox .price {
+    color: #ff9705;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.itemBox .priceBox .counter {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.itemBox .buttonBox {
+    display: flex;
+    align-items: center;
+}
+
+.itemBox .buttonBox .btn {
+    border-radius: 5px;
+    font-weight: 600;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: none;
+    display: block;
+    background-color: #ff7a00;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+    cursor: pointer;
+}
+.itemBox .buttonBox .btn:last-child {
+    margin-left: 20px;
+}
+
+.totalBox {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    border-radius: 10px;
+}
+
+.totalBox .priceBox {
+    display: flex;
+    align-items: center;
+}
+
+.totalBox .priceBox .totalPrice {
+    padding-left: 10px;
+    color: #00b86c;
+    font-weight: 600;
+    font-size: 32px;
+}
+
+.totalBox .buttonBox {
+    display: flex;
+    align-items: center;
+}
+
+.totalBox .buttonBox .btn {
+    border-radius: 5px;
+    font-weight: 600;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    display: block;
+    background-color: #017143;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+    border: 2px solid rgb(39, 39, 39);
+    cursor: pointer;
+    transition: 250ms;
+}
+.totalBox .buttonBox .btn:hover {
+    background-color: #00ff95;
+}
+.totalBox .buttonBox .btn:last-child {
+    margin-left: 20px;
+}
+.totalBox .buttonBox .btn:disabled {
+    background-color: #5d6964;
+}
+.totalBox .buttonBox .btn:disabled:hover {
+    background-color: #5d6964;
+}
+
+
+.CartItemBox {
+    position: relative;
+    width: 100%;
+    max-height: 30rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}

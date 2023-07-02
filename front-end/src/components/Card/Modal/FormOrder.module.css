@@ -1,0 +1,108 @@
+.content {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    min-height: 500px;
+    display: flex;
+    padding: 25px;
+    align-items: flex-start;
+    justify-content: center;
+    transition: 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    align-content: center;
+}
+
+.content .formBox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    align-items: flex-start;
+    justify-content: space-between;
+    transition: 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    align-content: center;
+}
+.content .formBox .dataBox {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    max-width: 300px;
+    gap: 10px;
+}
+
+.content .formBox .dataBox .labelBox input {
+    width: 100%;
+}
+
+.content .formBox .labelBox {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+}
+
+.content .formBox .labelBox {
+    font-size: 14px;
+}
+.content .formBox .labelBox input {
+    border-radius: 10px;
+    width: 300px;
+    margin-top: 5px;
+}
+
+.content .formBox .labelBox .errorMsg {
+    font-size: 11px;
+    color: rgb(101, 2, 2);
+}
+
+.content .orderBox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    align-items: flex-start;
+    justify-content: space-between;
+    transition: 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    align-content: center;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+}
+
+.content .orderBox .collumBox {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.content .orderBox .collumBox p {
+    font-size: 14px;
+    color: #333;
+}
+
+.content .orderBox .btn {
+    border-radius: 5px;
+    font-weight: 600;
+    padding: 10px 20px;
+    font-size: 18px;
+    display: block;
+    background-color: #4f9c7c;
+    box-shadow: rgba(0, 0, 0, 0.10) 0px 5px 15px;
+    border: 2px solid rgb(39, 39, 39);
+    cursor: pointer;
+    transition: 250ms;
+    border-radius: 20px;
+}
+
+.content .orderBox .btn:disabled {
+    background-color: #7da091;
+}

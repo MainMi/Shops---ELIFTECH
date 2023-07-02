@@ -1,0 +1,56 @@
+.cardBox {
+    position: relative;
+    width: calc(100% - 20px);
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+}
+
+.priceBox {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.priceBox .price {
+    color: #ff9705;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.priceBox .buttonBox {
+    display: flex;
+    width: 100px;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin-left: 15px;
+}
+
+.priceBox .buttonBox .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(255, 191, 0);
+    border: 2px solid rgb(75, 75, 75);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    font-weight: 600;
+    transition: 250ms;
+}
+
+.priceBox .buttonBox .btn:first-child:hover {
+    background-color: rgb(0, 255, 17);
+}
+
+.priceBox .buttonBox .btn:last-child:hover {
+    background-color: rgb(255, 0, 0);
+}
