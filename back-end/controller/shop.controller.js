@@ -1,10 +1,25 @@
-const { shopService } = require('../service');
+const { shopService, userService } = require('../service');
+const { deleteProducts } = require('../service/product.service');
 
 module.exports = {
-    createShop: (req, res, next) => {
+    createShop: async (req, res, next) => {
         try {
-            shopService.createShop(req.body);
-            res.status(200).json('Product created success');
+            const { _id: userId } = req.authUser;
+            const { _id: shopId } = await shopService.createShop(req.body);
+            await userService.addUserShop(userId, shopId);
+            res.status(200).json('Shop created success');
+            next();
+        } catch (e) {
+            next(e);
+        }
+    },
+    deleteShop: async (req, res, next) => {
+        try {
+            const { shop } = req.body;
+            await deleteProducts({ shop });
+            await shopService.deleteShop({ _id: shop });
+
+            res.status(200).json('Shop deleted success');
             next();
         } catch (e) {
             next(e);
@@ -12,9 +27,9 @@ module.exports = {
     },
     getAllShops: async (req, res, next) => {
         try {
-            const productData = await shopService.getAllShop();
+            const shopData = await shopService.getAllShop();
 
-            res.json(productData);
+            res.status(200).json(shopData);
             next();
         } catch (e) {
             next(e);

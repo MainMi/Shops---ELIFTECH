@@ -8,5 +8,6 @@ module.exports = {
             products: id
         }
     }),
-    createShop: (shopData) => Shop.create(shopData)
+    createShop: (shopData) => Shop.create(shopData),
+    deleteShop: (queryData) => Shop.deleteOne(queryData),
 };

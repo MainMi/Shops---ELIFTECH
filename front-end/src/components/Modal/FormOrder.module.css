@@ -1,0 +1,143 @@
+.content {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    min-height: 500px;
+    display: flex;
+    padding: 25px;
+    align-items: flex-start;
+    justify-content: center;
+    transition: 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    align-content: center;
+}
+
+.content .formBox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 10% 65% 25%;
+}
+.content .formBox .formHeader {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.content .formBox .formMain {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 125px;
+    padding: 0 10px;
+    gap: 20px;
+}
+
+.content .formBox .labelBox {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+}
+.content .formBox .dataBox .labelBox input {
+    width: 100%;
+}
+
+
+.content .formBox .labelBox {
+    font-size: 16px;
+}
+.content .formBox .labelBox input {
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.content .formBox .labelBox .errorMsg {
+    font-size: 11px;
+    color: rgb(101, 2, 2);
+}
+
+.content .orderBox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr max-content max-content;
+    padding: 0 40px;
+    align-items: center;
+    gap: 20px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.content .orderBox .buttonBox {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.content .orderBox .btn {
+    border-radius: 5px;
+    font-weight: 600;
+    padding: 10px 20px;
+    font-size: 18px;
+    display: block;
+    background-color: #4f9c7c;
+    box-shadow: rgba(0, 0, 0, 0.10) 0px 5px 15px;
+    border: 3px solid rgb(39, 39, 39);
+    cursor: pointer;
+    transition: 250ms;
+    border-radius: 15px;
+}
+.content .orderBox .btn:hover {
+    background-color: #57e392;
+}
+.content .orderBox .btn.close {
+    background-color: rgb(166, 70, 70);
+}
+.content .orderBox .btn.close:hover {
+    background-color: rgb(220, 66, 66);
+}
+.content .orderBox .btn:disabled {
+    background-color: #a68446;
+}
+
+@media (max-width: 991px) {
+    .content .formBox .formMain {
+        width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .content .formBox .formMain {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+    }
+    .content .formBox .orderBox {
+        grid-template-columns: 1fr max-content;
+    }
+    .content .formBox .orderBox {
+        padding: 15px;
+    }
+    .content .formBox .orderBox h2 {
+        font-size: 18px;
+    }
+    .content .formBox .orderBox .buttonBox {
+        justify-content: center;
+        grid-column: 1 / span 2;
+    }
+    .content .formBox .orderBox .buttonBox .btn {
+        font-size: 16px;
+    }
+}
+

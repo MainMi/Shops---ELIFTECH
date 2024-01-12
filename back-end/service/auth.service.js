@@ -10,16 +10,17 @@ const {
 const { ACCESS } = '../constant/token.type.constans.js';
 
 const ErrorHandler = require('../error/errorHandler');
-const { BAD_REQUEST } = require('../error/errorStatus');
-const { NOT_VALID_TOKEN } = require('../error/errorCustomStatus');
+const { WRONG_EMAIL_OR_PASSWORD, NOT_VALID_TOKEN } = require('../error/errorUser');
+const oauth = require('../database/model/oauth');
 
 module.exports = {
+    findByParamsToken: (paramsData) => oauth.findOne(paramsData).populate('userId'),
     hashPassword: (password) => bcrypt.hash(password, 10),
     comparePassword: async (password, hashPassword) => {
         const isPasswordEquels = await bcrypt.compare(password, hashPassword);
 
         if (!isPasswordEquels) {
-            throw new ErrorHandler(403, 4031, 'Wrong email or passworld');
+            throw new ErrorHandler(...Object.values(WRONG_EMAIL_OR_PASSWORD));
         }
     },
     generateTokenPair: (encodeData) => {
@@ -27,6 +28,7 @@ module.exports = {
         const refresh_token = jwt.sign(encodeData, JWT_SECRET_REFRESH, { expiresIn: '30d' });
         return { access_token, refresh_token };
     },
+    createOauth: (userId, tokenPair) => oauth.create({ userId, ...tokenPair }),
     validateToken: (token, tokenType = ACCESS) => {
         const tokenTypeKey = (tokenType === ACCESS)
             ? JWT_SECRET
@@ -34,7 +36,7 @@ module.exports = {
         try {
             return jwt.verify(token, tokenTypeKey);
         } catch (e) {
-            throw new ErrorHandler(BAD_REQUEST, NOT_VALID_TOKEN, 'Invalid token');
+            throw new ErrorHandler(...Object.values(NOT_VALID_TOKEN));
         }
     },
 };

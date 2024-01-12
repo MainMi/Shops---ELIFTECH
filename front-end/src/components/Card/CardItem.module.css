@@ -54,3 +54,11 @@
 .priceBox .buttonBox .btn:last-child:hover {
     background-color: rgb(255, 0, 0);
 }
+@media (max-width: 768px) {
+    .cardBox {
+        height: 100px;
+        margin: 10px 0;
+        flex-direction: column;
+        width: calc(100% - 10px);
+    }
+}

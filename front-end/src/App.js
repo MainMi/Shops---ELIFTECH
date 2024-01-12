@@ -1,11 +1,15 @@
-import { useEffect } from 'react';
-import Header from './components/Layout/header/Header';
-import ShopPage from './components/page/ShopPage';
-import { useDispatch } from 'react-redux';
-import { fetchShops } from './components/store/actions/shop-actions';
-import NotificationStatus from './components/Notification/Notification-status';
 import { useCookies } from 'react-cookie'
 import { nanoid } from 'nanoid'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+
+
+import ShopPage from './page/ShopPage';
+import HomePage from './page/HomePage';
+import RootLayout from './page/RootPage';
+import SingPage from './page/SingPage';
+import ProfilePage from './page/ProfilePage';
+import ManagePage from './page/ManagePage';
+
 
 
 function App() {
@@ -17,17 +21,25 @@ function App() {
   }
 
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchShops()); 
-  }, []);
+  
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <RootLayout />,
+      children: [
+        { path: '/', element: <HomePage /> },
+        { path: '/product', element: <ShopPage/> },
+        { path: '/sing' , element: <SingPage/> },
+        { path: '/profile' , element: <ProfilePage/> },
+        { path: '/manage', element: <ManagePage/> }
+      ]
+    }
+    
+  ]);
 
   return (
-    <div>
-      <NotificationStatus/>
-      <Header/>
-      <ShopPage/>
-    </div>
+    <RouterProvider router={router}/>
   );
 }
 

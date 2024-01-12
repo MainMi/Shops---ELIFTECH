@@ -7,7 +7,10 @@ const shopSchema = new Schema({
 });
 
 shopSchema.pre('find', function() {
-    this.populate('Product');
+    this.populate({
+        path: 'products',
+        model: 'Product'
+    });
 });
 
 module.exports = model('Shop', shopSchema);

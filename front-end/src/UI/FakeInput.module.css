@@ -1,0 +1,22 @@
+.input {
+    font-weight: 700;
+    color: #111;
+    position: relative;
+    width: max-content;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    padding: 0;
+    outline: none;
+    cursor: default;
+}
+
+.input:focus {
+    border: none;
+}
+
+.input:not(:read-only):focus,
+.input:not(:read-only):hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,15 @@
+.notFoundTitle {
+    padding-top: 100px;
+}
+
+.content {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 200px;
+    background-image: linear-gradient(to right top, #ffbf00, #ffb100, #ffa300, #ff9400, #ff8500);
+}
+

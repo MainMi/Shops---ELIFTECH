@@ -1,11 +1,9 @@
 import { useDispatch } from "react-redux";
 import classes from "./CardItem.module.css"
-import { cardAction } from "../store/cart-slice";
-import { uiAction, uiConstantIsVisible } from "../store/ui-slice";
+import { cardAction } from "../../store/cart-slice";
 
 const CardItem = (props) => {
     const { name, description, price, id, qualitity } = props.product;
-    console.log(qualitity);
     const dispatch = useDispatch();
 
     const addCartHandler = () => {

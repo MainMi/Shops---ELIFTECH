@@ -1,18 +1,19 @@
 .formBox {
     position: relative;
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
+    grid-template-columns: 1fr 250px 50px;
     width: 75vw;
     height: 150px;
     padding: 25px;
+    background-color: #fff;
+    border-radius: 15px;
 }
 
 .title {
-    position: absolute;
-    left: 25px;
-    top: 20px;
-    color: #017143;
+    height: 25px;
+    color: #ff7700;
 }
 
 .searchInput {
@@ -35,11 +36,17 @@ input:focus {
 input::placeholder {
     color: #B2B5AC;
 }
+.searchBox {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+}
 
 .filterBox {
+    height: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 23px;
 }
 
 .filterContent {
@@ -79,18 +86,43 @@ input::placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5px;
+    padding: 5px 10px;
     border: none;
-    background: #017143;
+    background: #ffbf00;
     color: #fff;
     font-weight: 600;
     border-radius: 5px;
+    margin-top: 20px;
     border: 2px solid rgb(39, 39, 39);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     transition: 250ms;
+    cursor: pointer;
 }
 
 .btn:hover {
-    background: #019c5b;
+    background: #ff9500;
     transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .formBox {
+        width: 90vw;
+        gap: 15px;
+        grid-template-columns: 1fr 50px;
+        padding: 10px 15px;
+    }
+    .filterBox {
+        grid-column: 1 / span 2;
+    }
+    .title {
+        font-size: 18px;
+        height: 30px;
+        color: #ff7700;
+    }
+    .btn {
+        grid-row: 1;
+        grid-column: 2;
+        margin-top: 25px;
+        margin-top: 25px;
+    }
 }

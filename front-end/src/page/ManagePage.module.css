@@ -1,0 +1,12 @@
+.background {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(to right top, #15ffea, #00f5f4, #00ebfb, #00e0ff, #15d5ff);
+    padding-top: 80px;
+}
+

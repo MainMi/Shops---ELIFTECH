@@ -4,4 +4,5 @@ module.exports = {
     productRouter: require('./product.router'),
     authRouter: require('./auth.router'),
     shopRouter: require('./shop.router'),
+    userRouter: require('./user.router')
 };

@@ -1,0 +1,110 @@
+.header {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+    z-index: 5;
+}
+
+.title {
+    font-size: 28px;
+    color: #017143;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+}
+
+.navigation a,
+.navigation .singOutBtn {
+    text-decoration: none;
+    color: #014a2b;
+    transition: 250ms;
+}
+
+.navigation a:hover,
+.navigation a.active,
+.navigation .singOutBtn:hover {
+    color: #017143;
+    text-decoration: underline;
+}
+
+.navigation .shopTitle {
+    color: #ffa300;
+}
+
+.navigation .shopTitle:hover,
+.navigation .shopTitle.active {
+    color: #ff8500;
+    text-decoration: underline;
+}
+
+.navigation .homeTitle {
+    color: #fbe600;
+}
+
+.navigation .homeTitle:hover,
+.navigation .homeTitle.active {
+    color: #fba700;
+    text-decoration: underline;
+}
+.navigation .managerTitle {
+    color: #00ebfb;
+}
+
+.navigation .managerTitle:hover,
+.navigation .managerTitle.active {
+    color: #15d5ff;
+    text-decoration: underline;
+}
+.navigation .profileTitle {
+    color: #008cff;
+}
+
+.navigation .profileTitle:hover,
+.navigation .profileTitle.active {
+    color: #1567ff;
+    text-decoration: underline;
+}
+
+.navigation .singOutBtn {
+    color: #cb2f2f;
+}
+
+.navigation .singOutBtn:hover,
+.navigation .singOutBtn.active {
+    color: #ff0000;
+    text-decoration: underline;
+}
+
+@media (max-width: 991px) {
+    .title {
+        font-size: 24px;
+    }
+    .navigation {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 15px;
+        flex-direction: column;
+    }
+    .title {
+        font-size: 18px;
+    }
+    .navigation {
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+}

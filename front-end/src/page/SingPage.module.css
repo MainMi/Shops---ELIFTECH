@@ -1,0 +1,187 @@
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    transition: 1s;
+    background-image: linear-gradient(to right top, #ffffff, #f9f9f9, #f3f3f3, #ededed, #e7e7e7);
+}
+.container.singIn {
+    background-image: linear-gradient(to right top, #00e887, #00eb84, #00ed80, #03f07c, #09f278);
+} 
+.content {
+    position: relative;
+    display: flex;
+    width: 800px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+
+.content .box {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    transition: 1s;
+    transition-delay: 250ms;
+    opacity: 1;
+}
+
+.container .box:first-child {
+    opacity: 0;
+}
+.container.singIn .box:first-child {
+    opacity: 1;
+    transition-delay: 250ms;
+}
+.container.singIn .box:nth-child(2) {
+    opacity: 0;
+}
+
+.content .box h2 {
+    color: #017143;
+    margin-bottom: 10px;
+}
+.container.singIn h2:first-child {
+    color: #fff;
+}
+
+.content .box a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #fff;
+    font-weight: 600;
+    color: #017143;
+    text-decoration: none;
+}
+
+.content .formBx {
+    position: absolute;
+    left: 50px;
+    top: -50px;
+    width: 350px;
+    height: 480px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow: hidden;
+    transition: 1s;
+}
+.container.singIn .formBx {
+    left: 50%;
+}
+
+.container .formBx .contentForm {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
+    transition: 1s;
+    
+}
+
+.container .formBx .contentForm.singUpBx {
+    top: -2000px;
+    transition: 1s;
+}
+.container.singIn .formBx .contentForm.singUpBx {
+    top: 0px;
+    transition: 1s;
+}
+.container.singIn .formBx .contentForm.singInBx {
+    top: 2000px;
+    transition: 1s;
+}
+
+.container .formBx .contentForm h2 {
+    color: #111;
+    margin-bottom: 20px;
+}
+
+.container .formBx .contentForm .submitBtn {
+    display: inline-block;
+    background-color: #017143;
+    color: #fff;
+    padding: 10px 20px;
+    margin-bottom: 40px;
+    border: none;
+    font-weight: 600;
+    border-radius: 10px;
+}
+.container .formBx .contentForm .submitBtn:disabled {
+    background-color: #b5b3b3;
+}
+.container .formBx .contentForm input {
+    margin-bottom: 20px;
+}
+.container .formBx .contentForm a {
+    color: #017143;
+}
+
+.errorMsg {
+    display: inline;
+    position: relative;
+    top: -10px;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    color: red;
+    align-self: flex-start;
+}
+
+@media (max-width: 991px) {
+    .content {
+        max-width: 700px;
+    }
+
+    .content .formBx {
+        width: 300px;
+    }
+    .content .formBx .contentForm {
+        padding: 40px 20px;
+    }
+
+    .content .box {
+        padding: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        max-width: 700px;
+        background-color: transparent;
+    }
+
+    .content .formBx {
+        width: calc(100% - 10vw);
+        margin: 5vw;
+    }
+    .content .formBx .contentForm {
+        padding: 40px 20px;
+    }
+    .container .formBx .contentForm input {
+        width: 90%;
+    }
+
+    .content .box {
+        display: none;
+    }
+    .container .formBx,
+    .container.singIn .formBx {
+        left: 0;
+    }
+}

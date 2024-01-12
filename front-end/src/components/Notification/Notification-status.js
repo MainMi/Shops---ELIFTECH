@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import Notification from '../UI/Notification'
+import Notification from '../../UI/Notification'
 // import classes from './Cart.module.css';
 
 const NotificationStatus = props => {

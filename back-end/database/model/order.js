@@ -6,7 +6,12 @@ const orderSchema = new Schema({
     email: { type: String, require: true },
     phone: { type: String, require: true },
     price: { type: Number, require: true },
-    product: [{ type: Schema.Types.ObjectId, ref: 'Product' }]
+    address: { type: String, require: true },
+    product: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
+}, {
+    timestamps: true,
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true }
 });
 orderSchema.pre('find', function() {
     this.populate('product');

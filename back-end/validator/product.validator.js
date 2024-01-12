@@ -1,27 +1,30 @@
 const Joi = require('joi');
 const ErrorHandler = require('../error/errorHandler');
-const {
-    NOT_VALID_DESCRIPTION,
-    NOT_VALID_PRICE,
-    NOT_VALID_NAME
-} = require('../error/errorUser');
+const { NOT_VALID_PARAMS_FN } = require('../error/errorUser');
 
-module.exports = Joi.object({
-    name: Joi.string()
+const isRequiredSchema = (schema, required) => (
+    required ? schema.required() : schema.optional()
+);
+
+module.exports = (required = true) => Joi.object({
+    name: isRequiredSchema(Joi.string()
         .min(2)
         .max(200)
         .regex(/^[A-Za-z0-9 ]*$/)
-        .required()
-        .error(new ErrorHandler(402, 0, NOT_VALID_NAME.en)),
-    description: Joi.string()
+        .error(
+            new ErrorHandler(...Object.values(NOT_VALID_PARAMS_FN('Name')))
+        ), required),
+    description: isRequiredSchema(Joi.string()
         .min(1)
         .max(500)
-        .required()
-        .error(new ErrorHandler(402, 0, NOT_VALID_DESCRIPTION.en)),
-    price: Joi.number()
-        .min(0.01)
+        .error(
+            new ErrorHandler(...Object.values(NOT_VALID_PARAMS_FN('Description')))
+        ), required),
+    price: isRequiredSchema(Joi.number()
+        .min(1)
         .max(100000)
-        .required()
-        .error(new ErrorHandler(402, 0, NOT_VALID_PRICE.en)),
-    shop: Joi.string()
+        .error(
+            new ErrorHandler(...Object.values(NOT_VALID_PARAMS_FN('Price')))
+        ), required),
+    shop: isRequiredSchema(Joi.string(), required)
 });

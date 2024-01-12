@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import classes from "./ProductItem.module.css"
-import { cardAction } from "../store/cart-slice";
-import { uiAction, uiConstantIsVisible } from "../store/ui-slice";
+import { cardAction } from "../../store/cart-slice";
+import { uiAction, uiConstantIsVisible } from "../../store/ui-slice";
 
 const ProductItem = (props) => {
     const { name, description, price, _id } = props.product;
@@ -16,8 +16,7 @@ const ProductItem = (props) => {
         <h2 className={classes.title}>{name}</h2>
         <p>{description}</p>
         <div className={classes.priceBox}>
-            <span className={classes.price}>$ {price}</span>
-            <button className={classes.addBtn} onClick={addCartHandler}>Add</button>
+            <button className={classes.addBtn} onClick={addCartHandler}>{price}$</button>
         </div>
     </div>
 }

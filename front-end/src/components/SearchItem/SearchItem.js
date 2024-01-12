@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import Card from "../UI/Card"
+import Card from "../../UI/Card"
 import SearchIcon from "./SearchIcon";
 import classes from './SearchItem.module.css'
 import { useState } from "react";
-import { fetchProduct } from "../store/actions/product-actions";
+import { fetchProduct } from "../../store/actions/product-actions";
 
 const SearchItem = () => {
 
@@ -27,8 +27,10 @@ const SearchItem = () => {
     const shops = useSelector((state) => state.shop.items);
     return <Card>
         <form className={classes.formBox} onSubmit={submitProductData}>
-            <h2 className={classes.title}>Search</h2>
-            <input type="text" className={classes.searchInput} onChange={changeFilterTextHandler} />
+            <div className={classes.searchBox}>
+                <h2 className={classes.title}>Search</h2>
+                <input type="text" className={classes.searchInput} onChange={changeFilterTextHandler} />
+            </div>
             <div className={classes.filterBox}>
                 {!!shops.length && <div className={`${classes.filterContent} ${classes.select}`}>
                     <label>Shop:</label>

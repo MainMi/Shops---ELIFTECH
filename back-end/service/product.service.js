@@ -24,8 +24,7 @@ module.exports = {
             filterObject = {
                 $or: [
                     { name: { $regex: otherFilters.search, $options: 'i' } },
-                    { shop: { $in: shopIds } },
-                    { price: { $regex: otherFilters.search, $options: 'i' } },
+                    { shop: { $in: shopIds } }
                 ],
             };
         }
@@ -34,7 +33,7 @@ module.exports = {
                 ...filterObject,
                 ...(minPrice && { price: { $gte: minPrice } }),
                 ...(maxPrice && { price: { $lte: maxPrice } })
-            }
+            };
         }
 
         if (shop.trim() !== '') {
@@ -54,5 +53,8 @@ module.exports = {
             count
         };
     },
-    createProduct: (productData) => product.create(productData)
+    createProduct: (productData) => product.create(productData),
+    updateProduct: (queryData, newData) => product.updateOne(queryData, { $set: newData }),
+    deleteProduct: (queryData) => product.deleteOne(queryData),
+    deleteProducts: (queryData) => product.deleteMany(queryData)
 };

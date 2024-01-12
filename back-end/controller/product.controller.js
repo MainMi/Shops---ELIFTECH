@@ -5,7 +5,7 @@ module.exports = {
         try {
             const productData = await productService.getProductWithCount(req.query);
 
-            res.json(productData);
+            res.status(200).json(productData);
             next();
         } catch (e) {
             next(e);
@@ -13,15 +13,41 @@ module.exports = {
     },
     createProduct: async (req, res, next) => {
         try {
-            const { shop: name } = req.body;
+            const { _id: shopId } = req.shop;
 
-            const { _id } = await productService.createProduct({
+            const { _id: productId } = await productService.createProduct({
                 ...req.body,
-                shop: req.shop._id
+                shop: shopId
             });
 
-            shopService.addProductToShop({ name }, _id);
+            await shopService.addProductToShop({ _id: shopId }, productId);
             res.status(200).json('Product created success');
+            next();
+        } catch (e) {
+            next(e);
+        }
+    },
+    editProduct: async (req, res, next) => {
+        try {
+            const { productId } = req.body;
+
+            await productService.updateProduct(
+                { _id: productId },
+                { ...req.body, productId: undefined }
+            );
+
+            res.status(200).json('Product changed success');
+            next();
+        } catch (e) {
+            next(e);
+        }
+    },
+    deleteProduct: async (req, res, next) => {
+        try {
+            const { productId } = req.body;
+            await productService.deleteProduct({ _id: productId });
+
+            res.status(200).json('Product deleted success');
             next();
         } catch (e) {
             next(e);
